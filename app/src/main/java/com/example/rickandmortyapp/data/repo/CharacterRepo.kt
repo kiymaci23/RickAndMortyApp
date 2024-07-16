@@ -12,6 +12,6 @@ class CharacterRepoImpl(
     private val api:RickAndMortyApi//API servisi.
 ):CharacterRepo {
     override suspend fun getCharacter(): CharacterResponse {
-        TODO("Not yet implemented")
+        return api.getCharacter()
     }
 }

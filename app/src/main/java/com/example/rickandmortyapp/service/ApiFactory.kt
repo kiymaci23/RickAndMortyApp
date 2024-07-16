@@ -1,22 +1,32 @@
 package com.example.rickandmortyapp.service
 
-import com.example.rickandmortyapp.service.api.RickAndMortyApi
+import android.util.Log
 import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiFactory {
+    var logging: HttpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+
+
+        override fun log(message: String) {
+            Log.d("okhttp",message)
+
+        }
+    })
 
     fun provideRetrofit(
         okHttpClient: OkHttpClient//Bu, Retrofit'in HTTP isteklerini gerçekleştirmek için kullanacağı OkHttpClient nesnesini alır.
-        ): Retrofit {
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient())
+            .client(okHttpClient)
             .build()
+
     }
 
     fun provideHttpClient(): OkHttpClient {
@@ -24,6 +34,7 @@ object ApiFactory {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .connectionPool(ConnectionPool(256, 10, TimeUnit.MINUTES))
+            .addInterceptor(logging)
         return okHttpClientBuilder.build()
     }
 }

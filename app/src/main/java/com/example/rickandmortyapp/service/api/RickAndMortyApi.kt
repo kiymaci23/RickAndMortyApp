@@ -4,4 +4,8 @@ import com.example.rickandmortyapp.data.model.CharacterResponse
 import retrofit2.http.GET
 
 interface RickAndMortyApi {
+    @GET("character")
+    suspend fun getCharacter():CharacterResponse
+
+
 }
