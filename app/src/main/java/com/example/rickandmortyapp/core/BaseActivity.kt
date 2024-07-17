@@ -9,7 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.rickandmortyapp.screen.home.CharacterListScreen
 import com.example.rickandmortyapp.ui.theme.RickandmortyappTheme
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext.startKoin
 
 
 open class BaseActivity : ComponentActivity() {
@@ -22,10 +25,12 @@ open class BaseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             navHostController = rememberNavController()
             RickandmortyappTheme {
                 Box(Modifier.fillMaxSize()) {
                     Content()
+                    CharacterListScreen()
                 }
             }
         }

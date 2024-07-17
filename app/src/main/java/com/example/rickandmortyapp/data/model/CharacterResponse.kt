@@ -2,8 +2,9 @@ package com.example.rickandmortyapp.data.model
 
 data class CharacterResponse (
     val info: Info,
-    val results: List<Result>
+    val results: List<Character>
 )
+
 
 data class Info (
     val count: Long,
@@ -12,7 +13,7 @@ data class Info (
     val prev: Any? = null
 )
 
-data class Result (
+data class Character (
     val id: Long,
     val name: String,
     val status: Status,

@@ -7,7 +7,10 @@ import com.example.rickandmortyapp.core.Navigation
 import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity() {
-    private val viewModel: MainActivityViewModel by inject()
+    private val viewModel: MainActivityVM by inject()
+
+
+
 
     @Composable
     override fun Content() {
