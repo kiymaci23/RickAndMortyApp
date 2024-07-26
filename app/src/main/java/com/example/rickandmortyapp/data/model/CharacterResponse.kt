@@ -16,7 +16,7 @@ data class Info (
 data class Character (
     val id: Long,
     val name: String,
-    val status: Status,
+    val status: String,
     val species: Species,
     val type: String,
     val gender: Gender,

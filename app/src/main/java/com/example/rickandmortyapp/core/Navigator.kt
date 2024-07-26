@@ -13,7 +13,7 @@ import com.example.rickandmortyapp.screen.home.HomeScreen
 sealed class Screen(val route: String) {
     data object Home : Screen("home")
     data object Detail : Screen("detail/{id}") {
-        fun createRoute(id: Int) = "detail/$id"
+        fun createRoute(id: Long) = "detail/$id"
     }
 }
 
@@ -23,9 +23,9 @@ fun Navigation(navController: NavHostController, modifier: Modifier = Modifier) 
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
+            arguments = listOf(navArgument("id") { type = NavType.LongType })
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getInt("id")
+            val id = backStackEntry.arguments?.getLong("id")
             CharacterDetailScreen(navController, id)
         }
     }

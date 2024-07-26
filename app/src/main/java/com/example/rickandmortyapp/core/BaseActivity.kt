@@ -30,7 +30,7 @@ open class BaseActivity : ComponentActivity() {
             RickandmortyappTheme {
                 Box(Modifier.fillMaxSize()) {
                     Content()
-                    CharacterListScreen()
+
                 }
             }
         }

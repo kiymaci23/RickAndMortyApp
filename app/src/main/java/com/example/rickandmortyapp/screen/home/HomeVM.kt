@@ -22,7 +22,8 @@ import org.koin.androidx.compose.koinViewModel
 
 class HomeVM(private val repo: CharacterRepo) : BaseViewModel() {
     var characterList by mutableStateOf(emptyList<Character>())
-
+    var errorMessage by mutableStateOf("")
+    var filteredCharacterList by mutableStateOf(emptyList<Character>())
 
     init {
         getCharacters()
@@ -30,10 +31,24 @@ class HomeVM(private val repo: CharacterRepo) : BaseViewModel() {
 
     private fun getCharacters() {
         viewModelScope.launch {
-            val response = repo.getCharacter()
-            characterList = response.results
-            Log.d("character response", "$response")
-
+            try {
+                val response = repo.getCharacter()
+                characterList = response.results
+                errorMessage = ""
+                Log.d("character response", "$response")
+            } catch (e: Exception) {
+                errorMessage = "Failed to load characters"
+                Log.e("character response", "Error loading characters", e)
+            }
         }
+    }
+    fun filterCharacters(query: String) {
+        Log.d("filterCharacters", "Query: $query")
+        filteredCharacterList = if (query.isEmpty()) {
+            characterList
+        } else {
+            characterList.filter { it.name.contains(query, ignoreCase = true) }
+        }
+        Log.d("filterCharacters", "Filtered List: ${filteredCharacterList.size}")
     }
 }

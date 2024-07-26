@@ -9,7 +9,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class RickAndMortyApplication : Application() {
-    private val koinModules= listOf(apiModule, networkModule, repositoryModule, viewModelModule)//Koin modüllerinin bir listesi tanımlanmıştır.
+    private val koinModules= listOf(apiModule, networkModule, repositoryModule, viewModelModule)
     override fun onCreate() {
         super.onCreate()
         initKoin()

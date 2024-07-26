@@ -19,7 +19,7 @@ object ApiFactory {
     })
 
     fun provideRetrofit(
-        okHttpClient: OkHttpClient//Bu, Retrofit'in HTTP isteklerini gerçekleştirmek için kullanacağı OkHttpClient nesnesini alır.
+        okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")

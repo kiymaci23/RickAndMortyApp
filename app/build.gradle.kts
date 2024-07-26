@@ -90,4 +90,7 @@ dependencies {
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation ("io.coil-kt:coil-compose:1.4.0")
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    implementation ("androidx.compose.runtime:runtime-livedata:1.3.0")
 }
